@@ -24,6 +24,5 @@ services:
     # - 443:4433
 
 volumes:
-  database_volume:
   gpg_volume:
   jwt_volume:

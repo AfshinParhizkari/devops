@@ -2,6 +2,7 @@ ______________ Install Docker Compose  ______________________________________
 sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
 docker-compose --version
+
 ______________ Install Passbolt from docker hub_______________________________
 docker tag passbolt/passbolt:latest localhost:5000/passbolt:latest
 docker push localhost:5000/passbolt
@@ -24,7 +25,8 @@ docker-compose exec passbolt su -m -c "/usr/share/php/passbolt/bin/cake \
                                 -r admin" -s /bin/sh www-data
 https://passbolt.local/setup/install/user_id/token
 add chrome extention
-______________ CLI ?______________________________________
+
+______________ CLI-API ______________________________________
 
 
 
@@ -32,8 +34,17 @@ ______________ public & private key ______________________________________
 cd /var/lib/docker/volumes/passbolt_gpg_volume/_data
 serverkey.asc
 serverkey_private.asc
-change key to asc:?
 
-______________ backup and recovery ?______________________________________
+openssl genrsa -out test_private.asc 2048
+openssl rsa -in test_private.asc -pubout -out  test_public.asc
 
+______________ backup and recovery ______________________________________
+cp /var/lib/docker/volumes/passbolt_gpg_volume/_data/*  /home/afshin/myprojects/lib/db/passbolt/
+cp /var/lib/docker/volumes/passbolt_jwt_volume/_data/*  /home/afshin/myprojects/lib/db/passbolt/
+mysqldump -u admin -p passbolt > /home/afshin/myprojects/lib/db/passbolt/passbolt_ver1.sql
 
+docker-compose up -d
+docker-compose down
+cp /home/afshin/myprojects/lib/db/passbolt/passbolt_jwt_volume/* /var/lib/docker/volumes/passbolt_jwt_volume/_data/
+cp /home/afshin/myprojects/lib/db/passbolt/passbolt_gpg_volume/* /var/lib/docker/volumes/passbolt_gpg_volume/_data/
+mysql -u admin -p passbolt < /home/afshin/myprojects/lib/db/passbolt/passbolt_ver1.sql
