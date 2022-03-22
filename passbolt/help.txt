@@ -1,0 +1,39 @@
+______________ Install Docker Compose  ______________________________________
+sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+chmod +x /usr/local/bin/docker-compose
+docker-compose --version
+______________ Install Passbolt from docker hub_______________________________
+docker tag passbolt/passbolt:latest localhost:5000/passbolt:latest
+docker push localhost:5000/passbolt
+curl -X GET http://192.168.1.34:5000/v2/_catalog
+
+systemctl start mysql.service
+create schema passbolt;
+cd /root/passbolt
+docker-compose images/ps
+curl -Ls https://raw.githubusercontent.com/passbolt/passbolt_docker/master/docker-compose/docker-compose-ce.yaml -o docker-compose.yml
+shasum -a 256 docker-compose.yaml
+docker-compose down
+docker-compose up -d
+docker-compose ps
+docker-compose exec passbolt su -m -c "/usr/share/php/passbolt/bin/cake \                  
+                                passbolt register_user \
+                                -u afshin.parhizkari@gmail.com \
+                                -f afshin \
+                                -l parhizkari \
+                                -r admin" -s /bin/sh www-data
+https://passbolt.local/setup/install/user_id/token
+add chrome extention
+______________ CLI ?______________________________________
+
+
+
+______________ public & private key ______________________________________
+cd /var/lib/docker/volumes/passbolt_gpg_volume/_data
+serverkey.asc
+serverkey_private.asc
+change key to asc:?
+
+______________ backup and recovery ?______________________________________
+
+
