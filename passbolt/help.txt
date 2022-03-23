@@ -23,12 +23,16 @@ docker-compose exec passbolt su -m -c "/usr/share/php/passbolt/bin/cake \
                                 -f afshin \
                                 -l parhizkari \
                                 -r admin" -s /bin/sh www-data
-https://passbolt.local/setup/install/user_id/token
+https://192.168.1.34/setup/install/user_id/token
 add chrome extention
 
-______________ CLI-API ______________________________________
+______________ CLI-API: swagger on self-host passbolt ___________________
 
 
+______________ Config Email sender ___________________
+Activate https://myaccount.google.com/lesssecureapp in gmail
+Add Email env to compose file
+In each node you have to import your_private_key and Passphrase
 
 ______________ public & private key ______________________________________
 cd /var/lib/docker/volumes/passbolt_gpg_volume/_data

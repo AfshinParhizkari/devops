@@ -10,8 +10,15 @@ services:
       APP_FULL_BASE_URL: https://192.168.1.34/
       DATASOURCES_DEFAULT_HOST: "192.168.1.34"
       DATASOURCES_DEFAULT_USERNAME: "admin"
-      DATASOURCES_DEFAULT_PASSWORD: "******"
+      DATASOURCES_DEFAULT_PASSWORD: "*****"
       DATASOURCES_DEFAULT_DATABASE: "passbolt"
+      PASSBOLT_SSL_FORCE: "true"
+      EMAIL_TRANSPORT_DEFAULT_HOST: "smtp.gmail.com"
+      EMAIL_TRANSPORT_DEFAULT_PORT: "587"
+      EMAIL_TRANSPORT_DEFAULT_USERNAME: "parhizkari.afshin@gmail.com"
+      EMAIL_TRANSPORT_DEFAULT_PASSWORD: "*****"
+      EMAIL_DEFAULT_FROM: "parhizkari.afshin@gmail.com"
+      EMAIL_TRANSPORT_DEFAULT_TLS: "true"
     volumes:
       - gpg_volume:/etc/passbolt/gpg
       - jwt_volume:/etc/passbolt/jwt
