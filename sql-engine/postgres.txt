@@ -1,0 +1,15 @@
+docker volume create --name postgres-data
+docker network create postgres_net
+
+docker container run -itd --restart always --hostname postgres --name=postgre-sql
+ -v postgres-data:/var/lib/postgresql/data
+ --network postgres_net -p 5432:5432
+ -e PGDATA=/var/lib/postgresql/data/pgdata
+ -e POSTGRES_PASSWORD=P@ssw0rd
+ postgres
+
+docker run -itd  --hostname pgadmin --name=pg-admin
+  -p 5050:80 --network postgres_net
+  -e "PGADMIN_DEFAULT_EMAIL=parhizkari.afshin@gmail.com"
+  -e "PGADMIN_DEFAULT_PASSWORD=P@ssw0rd"
+  dpage/pgadmin4

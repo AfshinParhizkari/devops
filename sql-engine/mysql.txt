@@ -1,0 +1,16 @@
+docker volume create --name my-sql
+
+docker container run -itd --hostname mysql --name=my-sql
+ -v mysql-data:/var/lib/mysql
+ -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root
+ -e MYSQL_DATABASE=my-schema-name
+ -e MYSQL_USER=admin
+ -e MYSQL_PASSWORD=P@ssw0rd
+ mysql
+
+
+# MySQL Import
+docker exec -i my-sql mysql -uroot -proot my-schema-name< /var/lib/docker/volumes/resource/my-import-data.sql
+inside container:
+docker exec -it my-sql bash
+ GRANT ALL PRIVILEGES ON *.* TO 'admin'
