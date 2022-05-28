@@ -1,0 +1,15 @@
+docker pull sonatype/nexus3
+docker tag sonatype/nexus3:latest localhost:5000/nexus3:latest
+docker push localhost:5000/nexus3:latest
+docker rmi localhost:5000/nexus3
+docker rmi sonatype/nexus3
+docker pull localhost:5000/nexus3
+
+mkdir /home/afshin/myprojects/lib/nexus-data
+chown -R 200 /home/afshin/myprojects/lib/nexus-data
+docker volume create nexus-data (?)
+docker run -d -p 8081:8081 --name nexus -v /home/afshin/myprojects/lib/nexus-data:/nexus-data localhost:5000/nexus3
+
+docker container start nexus
+docker logs -f e3508a6e3749
+docker exec -it e3508a6e3749 cat /nexus-data/admin.password
