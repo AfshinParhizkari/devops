@@ -1,0 +1,1 @@
+docker run -itd --hostname kibana --name elk-kibana --network elk  -p 5601:5601 -e "ELASTICSEARCH_HOSTS=http://192.168.1.x:9200"  kibana:7.16.2

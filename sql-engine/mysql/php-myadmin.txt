@@ -1,0 +1,3 @@
+docker tag phpmyadmin:latest localhost:5000/phpmyadmin:latest
+# mysql-engine is in remote machine:
+docker run -d --name phpmyadmin -e PMA_HOST=remote-mysql-ip -p 4040:80 localhost:5000/phpmyadmin:latest

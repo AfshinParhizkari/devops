@@ -1,0 +1,10 @@
+# https://docs.docker.com/registry/deploying/
+docker run -d \
+  -p 5000:5000 \
+  --restart=always \
+  --name registry \
+  -v /priatereg-data:/var/lib/registry \
+  registry:2
+  
+  
+docker container run -itd --hostname registry --name=img-reg -v img-registery:/var/lib/registry -p 5000:5000 --restart=always registry
